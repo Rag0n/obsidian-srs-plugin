@@ -13,21 +13,21 @@ export async function processNewFlashcards({
   save,
   uuid,
 }: ProcessNewFlashcardsRequest) {
-  const updatedFlashcards = await Promise.all(
-    flashcards.map(async (flashcard) => {
-      if (flashcard.id) {
-        return flashcard
-      }
-      const note = await read(flashcard.file);
-      const id = uuid();
-      const updatedNote = addIdToNote({ id: uuid(), flashcard, note });
-      await save(flashcard.file, updatedNote);
-      return {
-        ...flashcard,
+  let updatedFlashcards: Flashcard[] = []
+  for (const flashcard of flashcards) {
+    if (flashcard.id) {
+      updatedFlashcards.push(flashcard)
+      continue
+    }
+    const note = await read(flashcard.file);
+    const id = uuid();
+    const updatedNote = addIdToNote({ id: uuid(), flashcard, note });
+    await save(flashcard.file, updatedNote);
+    updatedFlashcards.push({
+      ...flashcard,
         id,
-      };
     })
-  );
+  }
   return updatedFlashcards
 }
 
