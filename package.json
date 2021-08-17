@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@types/react-dom": "^17.0.9",
+    "arcsecond": "^4.0.0",
     "ebisu-js": "^2.0.0",
-    "parjs": "^0.12.7",
     "preact": "^10.5.14",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat"
