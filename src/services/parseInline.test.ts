@@ -99,16 +99,16 @@ describe('inline parser', () => {
 
 Question::Answer
 
+Some text
 
-Abracadabra![[Даша]]![[test article 2]]
+[[Link 1#^308081]]
+[[Link 2#^9c18f4]]
 
-[[test article 2#^308081]]
-[[test article 2#^9c18f4]]
-
-second question::second answer
-`
-      const cards = parseInline({ note, file })
-      const card = cards[0]
+Another text
+`;
+      const cards = parseInline({ note, file });
+      const card = cards[0];
+      expect(cards.length).toEqual(1);
       expect(card).not.toBeNull()
       expect(card!.question).toEqual('Question')
       expect(card!.answer).toEqual('Answer')
