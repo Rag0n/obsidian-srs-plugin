@@ -13,22 +13,22 @@ export async function processNewFlashcards({
   save,
   uuid,
 }: ProcessNewFlashcardsRequest) {
-  let updatedFlashcards: Flashcard[] = []
+  let updatedFlashcards: Flashcard[] = [];
   for (const flashcard of flashcards) {
     if (flashcard.id) {
-      updatedFlashcards.push(flashcard)
-      continue
+      updatedFlashcards.push(flashcard);
+      continue;
     }
     const note = await read(flashcard.file);
-    const id = uuid();
-    const updatedNote = addIdToNote({ id: uuid(), flashcard, note });
+    const id = uuid().replace("_", "-");
+    const updatedNote = addIdToNote({ id: id, flashcard, note });
     await save(flashcard.file, updatedNote);
     updatedFlashcards.push({
       ...flashcard,
-        id,
-    })
+      id,
+    });
   }
-  return updatedFlashcards
+  return updatedFlashcards;
 }
 
 export interface AddIdToNoteRequest {
