@@ -44,15 +44,17 @@ export function updateProbabilities({
       };
     } else {
       return {
-        card: card, 
-        recallProbability: -Infinity
+        card: card,
+        recallProbability: -Infinity,
       };
     }
   });
   let sortedCardsWithProbability = cardsWithProbability.sort(
     (a, b) => a.recallProbability - b.recallProbability
   );
-  return sortedCardsWithProbability.map((cardWithProbability) => cardWithProbability.card);
+  return sortedCardsWithProbability.map(
+    (cardWithProbability) => cardWithProbability.card
+  );
 }
 
 export function recall({ card, remember }: ScheduleRequest): Card {

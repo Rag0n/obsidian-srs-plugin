@@ -6,7 +6,7 @@ export default interface Flashcard {
   answer: string;
   file: any; // TFile
   recall?: {
-    model: Model,
+    model: Model;
     time: string; // ISO time
-  }
+  };
 }

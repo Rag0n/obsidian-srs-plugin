@@ -31,7 +31,7 @@ function parseInline({ note, file }: ParseInlineRequest): Flashcard[] | null {
     yield str("::");
     const answer: string | number[] = yield answerParser;
     const id: string = yield idParser;
-    const formattedId = id === '' ? null : id.substring(1).trim()
+    const formattedId = id === "" ? null : id.substring(1).trim();
 
     return {
       id: formattedId,

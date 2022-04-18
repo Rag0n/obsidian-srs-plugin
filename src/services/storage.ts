@@ -26,7 +26,7 @@ export default async function configureStorage({
   load,
   save,
 }: StorageConfiguration): Promise<Storage> {
-  const data = await load()
+  const data = await load();
 
   const sync = async (execution: () => void) => {
     execution();
